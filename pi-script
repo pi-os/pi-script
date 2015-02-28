@@ -1,0 +1,47 @@
+#!/bin/bash
+figlet "                   Pi-script ";
+echo;echo;
+echo "pi-script 0.314 beta - (C) 2014 POROS";
+echo "Developed by Muhammad Harisuddin Thohir"
+echo "http://poros.ub.ac.id";
+echo;
+echo "pi-script is open source script that dedicated for Pi Black Edition";
+echo;echo;
+echo "usage: pi-<application>";
+echo;
+echo "available Pi Script:";
+echo;
+cd /sbin/;
+ls pi-*;
+echo;
+echo "with this script you can run application repeatly without type the application name";
+echo "for example if you want to do scan with nmap,
+usually you have to repeat write \"nmap\"
+with pi-script you just have to write \"pi-nmap\" just once
+when you use pi-script with \"pi-nmap\" command
+then you will get this interface:
+
+pi-nmap > 
+
+when you want to scan target without pi-script you must type command like this:
+nmap target1.com
+nmap target2.com
+nmap target3.com
+
+with pi-script you just have to type \"pi-nmap\" once
+then you just have to type the target with or without option:
+pi-nmap > target1.com
+pi-nmap > -V -O target2.com
+pi-nmap > target3.com -p 22
+
+you can type option of the application like -h -v --help etc.
+and this additional option you can use:
+
+man <manual>	: show user manual of application
+h <help>	: show help of application(or just with \"?\")
+e <exit>	: exit from application
+q <quit>	: quit from application(same with \"exit\")
+";
+
+#echo "Pi-Script developed by Muhammad Harisuddin Thohir"
+

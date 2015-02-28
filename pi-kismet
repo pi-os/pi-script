@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - kismet;
+echo "";
+while $loop
+ do
+  read -e -p "pi-kismet > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   kismet -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man kismet;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo kismet $arg;
+  fi	
+ done

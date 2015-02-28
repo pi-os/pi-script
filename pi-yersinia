@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - yersinia;
+echo "";
+while $loop
+ do
+  read -e -p "pi-yersinia > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   yersinia -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man yersinia;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo yersinia $arg;
+  fi	
+ done

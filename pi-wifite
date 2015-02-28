@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - wifite;
+echo "";
+while $loop
+ do
+  read -e -p "pi-wifite > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   wifite -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man wifite;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo wifite $arg;
+  fi	
+ done

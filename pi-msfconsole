@@ -1,0 +1,5 @@
+#!/bin/bash
+loop=true;
+figlet Pi - msfconsole;
+echo;
+sudo msfconsole;

@@ -1,0 +1,33 @@
+#!/bin/bash
+loop=true;
+figlet Pi - aircrack-ng;
+echo "";
+echo 'Wireless WEP/WPA cracking utilities'; echo; ls /menu/auditing/wireless_analysis/wifi/cracking/aircrack-ng/; echo;
+while $loop
+ do
+  read -e -p "pi-aircrack-ng > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   aircrack-ng -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man aircrack-ng;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo aircrack-ng $arg;
+  fi	
+ done

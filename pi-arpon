@@ -1,0 +1,38 @@
+#!/bin/bash
+loop=true;
+figlet Pi - arpon;
+echo "";
+while $loop
+ do
+  echo "type \"netcut-protection\" or \"np\" to protect your computer from netcut attact"
+  echo;
+  read -e -p "pi-arpon > " arg;
+  history -s "$arg";
+  if [[ $arg = "netcut-protection" || $arg = "np" ]]
+  then
+  	read -e -p "interface(eth0, wlan0, or others) : " interface;
+  	sudo arpon -i $interface -y 1 -d
+  elif [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   sudo arpon -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man arpon;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo arpon $arg;
+  fi	
+ done

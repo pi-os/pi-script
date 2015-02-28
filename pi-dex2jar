@@ -1,0 +1,33 @@
+#!/bin/bash
+loop=true;
+figlet Pi - dex2jar;
+echo "";
+echo 'Tools to work with android .dex and java .class files'; echo; ls /menu/auditing/mobile_analysis/android/dex2jar/; echo; 
+while $loop
+ do
+  read -e -p "pi-dex2jar > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   dex2jar -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man dex2jar;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo dex2jar $arg;
+  fi	
+ done

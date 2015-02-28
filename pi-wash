@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - wash;
+echo "";
+while $loop
+ do
+  read -e -p "pi-wash > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   wash -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   wash -h;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo wash $arg;
+  fi	
+ done

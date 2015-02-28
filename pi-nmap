@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - nmap;
+echo "";
+while $loop
+ do
+  read -e -p "pi-nmap > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   nmap -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man nmap;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo nmap $arg;
+  fi	
+ done

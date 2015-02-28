@@ -1,0 +1,32 @@
+#!/bin/bash
+loop=true;
+figlet Pi - radare2;
+echo "";
+while $loop
+ do
+  read -e -p "pi-radare2 > " arg;
+  history -s "$arg";
+  if [[ $arg = "q" || $arg = "e" || $arg = "exit" || $arg = "quit" ]]
+  then
+   loop=false;
+  elif [[ $arg = "help" || $arg = "h" || $arg = "?" ]]
+  then
+   radare2 -h;
+  elif [[ $arg = "man" || $arg = "manual" ]]
+  then
+   man radare2;
+  elif [[ ${arg%% *} = "cd" ]]
+  then
+   $arg;
+  elif [[ $arg = "" ]]
+  then
+   echo -n; 
+  elif which "${arg%% *}"
+  then
+   echo;
+   echo "result:";
+   $arg
+  else
+   sudo radare2 $arg;
+  fi	
+ done

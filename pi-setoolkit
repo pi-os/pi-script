@@ -1,0 +1,5 @@
+#!/bin/bash
+loop=true;
+figlet Pi - setoolkit;
+echo "";
+sudo setoolkit;
